@@ -1,5 +1,6 @@
 const QRCode = require("qrcode");
 const fs = require("fs");
+const TinyURL = require("tinyurl");
 
 module.exports = {
   pattern: /^\/qr (.+)$/,

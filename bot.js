@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
-const botName = "YourBotName"; // Ganti dengan nama bot yang sesuai
+const botName = "Rendezvous Bot"; // Ganti dengan nama bot yang sesuai
 
 // Load command files
 const commandFiles = fs.readdirSync(path.join(__dirname, "commands"));

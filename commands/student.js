@@ -1,6 +1,7 @@
 const QRCode = require("qrcode");
 const fs = require("fs");
 const TinyURL = require("tinyurl");
+const { evaluate } = require("mathjs");
 
 module.exports = {
   pattern: /^\/qr (.+)$/,
@@ -42,6 +43,26 @@ module.exports = {
     } catch (err) {
       bot.sendMessage(chatId, "❌ Failed to shorten URL. Please try again later!");
       console.error(err);
+    }
+  },
+};
+
+// Calc
+module.exports = {
+  pattern: /\/calc (.+)/,
+  execute: (bot, msg, match) => {
+    const chatId = msg.chat.id;
+    const expression = match[1];
+
+    try {
+      const result = evaluate(expression);
+      bot.sendMessage(chatId, `📊 *Hasil:* \`${expression} = ${result}\``, {
+        parse_mode: "Markdown",
+      });
+    } catch (error) {
+      bot.sendMessage(chatId, "⚠️ *Ekspresi tidak valid!* Pastikan format yang digunakan benar.", {
+        parse_mode: "Markdown",
+      });
     }
   },
 };
